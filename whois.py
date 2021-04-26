@@ -14,13 +14,31 @@ url = sess.get('https://www.hostinger.co.id/api/domain-search', headers={'User-A
 payload = {"domain":src_request}
 def doRequest():
     source = 'https://www.hostinger.co.id/whois'
-    getPost = requests.post(source, data=payload).text
-    soup = BeautifulSoup(getPost, 'html.parser')
-    format = soup.split('\r')
+    getPost = requests.post(source, json=payload).text
     
-    print(format)
+    formatN = getPost.replace("\\n", "\n")
+    formatstrip = formatN.replace("\/\/", "//")
+    formatstripsecond = formatN.replace("\/", "/")
     
-doRequest()
+    print(formatstripsecond)
+    
+def doRequestToArray():
+    source = 'https://www.hostinger.co.id/whois'
+    getPost = requests.post(source, json=payload).text
+    
+    formatN = getPost.replace("\\n", "^^")
+    formatstrip = formatN.replace("\/\/", "//")
+    formatstripsecond = formatN.replace("\/", "/")
+    
+    formatsplit = formatstripsecond.split("^^")
+    
+    print(formatsplit)
+    
+doRequest() 
+print('\n')
+print('\n')
+print('\n')
+doRequestToArray()
 
 
 
