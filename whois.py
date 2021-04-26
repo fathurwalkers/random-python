@@ -16,7 +16,9 @@ def doRequest():
     source = 'https://www.hostinger.co.id/whois'
     getPost = requests.post(source, data=payload).text
     soup = BeautifulSoup(getPost, 'html.parser')
-    print(soup.prettify())
+    format = soup.split('\r')
+    
+    print(format)
     
 doRequest()
 
